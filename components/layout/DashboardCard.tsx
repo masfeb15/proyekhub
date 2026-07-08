@@ -8,14 +8,14 @@ export default function DashboardCard({
   value,
 }: Props) {
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-      <h3 className="text-gray-500 text-sm">
+    <div className="rounded-xl bg-white p-6 shadow-sm border">
+      <p className="text-sm text-slate-500">
         {title}
-      </h3>
+      </p>
 
-      <div className="text-3xl font-bold mt-2">
+      <h2 className="mt-3 text-4xl font-bold">
         {value}
-      </div>
+      </h2>
     </div>
   );
 }

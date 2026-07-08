@@ -1,48 +1,45 @@
 import {
   LayoutDashboard,
   FolderKanban,
-  ClipboardCheck,
-  CalendarDays,
   BarChart3,
   FileText,
+  Settings,
 } from "lucide-react";
-
-const menus = [
-  { icon: LayoutDashboard, label: "Dashboard" },
-  { icon: FolderKanban, label: "Projects" },
-  { icon: ClipboardCheck, label: "Progress" },
-  { icon: CalendarDays, label: "Schedule" },
-  { icon: BarChart3, label: "BOQ" },
-  { icon: FileText, label: "Reports" },
-];
 
 export default function Sidebar() {
   return (
     <aside className="w-64 bg-slate-900 text-white min-h-screen">
       <div className="p-6 border-b border-slate-700">
-        <h1 className="text-2xl font-bold text-cyan-400">
-          ProyekHub
-        </h1>
-
-        <p className="text-xs text-slate-400 mt-1">
-          Construction Project OS
-        </p>
+        <h1 className="text-2xl font-bold">ProjectHub</h1>
       </div>
 
-      <nav className="p-3">
-        {menus.map((menu) => {
-          const Icon = menu.icon;
+      <nav className="p-4 space-y-2">
 
-          return (
-            <div
-              key={menu.label}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 cursor-pointer transition"
-            >
-              <Icon size={20} />
-              <span>{menu.label}</span>
-            </div>
-          );
-        })}
+        <button className="flex items-center gap-3 w-full rounded-lg bg-slate-800 px-4 py-3">
+          <LayoutDashboard size={18} />
+          Dashboard
+        </button>
+
+        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
+          <FolderKanban size={18} />
+          Projects
+        </button>
+
+        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
+          <BarChart3 size={18} />
+          Progress
+        </button>
+
+        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
+          <FileText size={18} />
+          Reports
+        </button>
+
+        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
+          <Settings size={18} />
+          Settings
+        </button>
+
       </nav>
     </aside>
   );

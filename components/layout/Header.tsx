@@ -1,18 +1,22 @@
 export default function Header() {
   return (
-    <header className="bg-white h-16 shadow px-8 flex items-center justify-between">
-      <div>
-        <h2 className="font-bold text-xl">
-          Dashboard
-        </h2>
+    <header className="h-16 border-b bg-white flex items-center justify-between px-8">
+      <h1 className="text-xl font-bold">
+        Dashboard
+      </h1>
 
-        <p className="text-gray-500 text-sm">
-          Welcome to ProyekHub
-        </p>
-      </div>
+      <div className="flex items-center gap-3">
+        <div className="h-10 w-10 rounded-full bg-slate-300" />
 
-      <div className="font-medium">
-        Admin
+        <div>
+          <p className="font-medium">
+            Admin
+          </p>
+
+          <p className="text-sm text-slate-500">
+            admin@proyekhub.id
+          </p>
+        </div>
       </div>
     </header>
   );
