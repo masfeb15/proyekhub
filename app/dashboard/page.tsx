@@ -1,5 +1,5 @@
 import AppLayout from "@/components/layout/AppLayout";
-import DashboardCard from "@/components/layout/DashboardCard";
+import DashboardCard from "@/components/dashboard/DashboardCard";
 
 export default function DashboardPage() {
   return (
