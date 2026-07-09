@@ -2,6 +2,7 @@ import Link from "next/link";
 import AppLayout from "@/components/layout/AppLayout";
 import { createClient } from "@/lib/supabase/server";
 import ProjectStatusBadge from "@/features/projects/components/ProjectStatusBadge";
+import ProjectTable from "@/features/projects/components/ProjectTable";
 
 export default async function ProjectsPage() {
   const supabase = await createClient();
@@ -35,74 +36,9 @@ export default async function ProjectsPage() {
 
       <div className="mt-8 overflow-hidden rounded-xl border bg-white">
 
-        <table className="w-full">
-
-          <thead className="bg-slate-100">
-
-            <tr>
-
-              <th className="p-3 text-left">
-                Code
-              </th>
-
-              <th className="p-3 text-left">
-                Project
-              </th>
-
-              <th className="p-3 text-left">
-                Status
-              </th>
-
-              <th className="p-3 text-right">
-                Contract
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            {projects?.map((project) => (
-
-              <tr
-                key={project.id}
-                className="border-t"
-              >
-
-                <td className="p-3">
-                  {project.project_code}
-                </td>
-
-
-                <td className="p-3">
-                    <Link
-                        href={`/projects/${project.id}`}
-                        className="font-medium text-blue-600 hover:underline"
-                        >
-                        {project.project_name}
-                    </Link>
-                </td>
-                <td className="p-3">
-                  <ProjectStatusBadge
-                  status={project.status ?? "DRAFT"}
-                />
-                </td>
-
-                <td className="p-3 text-right">
-                  Rp{" "}
-                  {Number(project.current_contract_value).toLocaleString(
-                    "id-ID"
-                  )}
-                </td>
-
-              </tr>
-
-            ))}
-
-          </tbody>
-
-        </table>
+        <ProjectTable
+          projects={projects ?? []}
+        />
 
       </div>
     </AppLayout>
