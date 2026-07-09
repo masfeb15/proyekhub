@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AppLayout from "@/components/layout/AppLayout";
 import { createClient } from "@/lib/supabase/server";
+import ProjectStatusBadge from "@/features/projects/components/ProjectStatusBadge";
 
 export default async function ProjectsPage() {
   const supabase = await createClient();
@@ -83,7 +84,9 @@ export default async function ProjectsPage() {
                     </Link>
                 </td>
                 <td className="p-3">
-                  {project.status}
+                  <ProjectStatusBadge
+                  status={project.status ?? "DRAFT"}
+                />
                 </td>
 
                 <td className="p-3 text-right">
