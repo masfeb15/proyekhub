@@ -34,13 +34,20 @@ export default async function ProjectsPage() {
         Projects
       </h1>
 
-      <div className="mt-8 overflow-hidden rounded-xl border bg-white">
+      <div className="flex items-center justify-between">
 
-        <ProjectTable
-          projects={projects ?? []}
-        />
+  <h1 className="text-3xl font-bold">
+    Projects
+  </h1>
 
-      </div>
+  <Link
+    href="/projects/new"
+    className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+  >
+    + New Project
+  </Link>
+
+</div>
     </AppLayout>
   );
 }
