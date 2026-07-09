@@ -1,3 +1,35 @@
+"use client";
+
+const menus = [
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+    icon: FolderKanban,
+  },
+  {
+    title: "Progress",
+    href: "/progress",
+    icon: BarChart3,
+  },
+  {
+    title: "Reports",
+    href: "/reports",
+    icon: FileText,
+  },
+  {
+    title: "Settings",
+    href: "/settings",
+    icon: Settings,
+  },
+];
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -14,32 +46,24 @@ export default function Sidebar() {
       </div>
 
       <nav className="p-4 space-y-2">
-
-        <button className="flex items-center gap-3 w-full rounded-lg bg-slate-800 px-4 py-3">
-          <LayoutDashboard size={18} />
-          Dashboard
-        </button>
-
-        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
-          <FolderKanban size={18} />
-          Projects
-        </button>
-
-        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
-          <BarChart3 size={18} />
-          Progress
-        </button>
-
-        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
-          <FileText size={18} />
-          Reports
-        </button>
-
-        <button className="flex items-center gap-3 w-full rounded-lg px-4 py-3 hover:bg-slate-800">
-          <Settings size={18} />
-          Settings
-        </button>
-
+      {menus.map((menu) => {
+      const Icon = menu.icon;
+      const pathname = usePathname();
+      return (
+      <Link
+        href={menu.href}
+        key={menu.title}
+        className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition ${
+        pathname === menu.href
+        ? "bg-slate-800 text-white"
+        : "hover:bg-slate-800 text-slate-300"
+        }`}
+        >
+        <Icon size={18} />
+        {menu.title}
+      </Link>
+      );
+      })}
       </nav>
     </aside>
   );

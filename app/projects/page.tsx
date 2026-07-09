@@ -1,0 +1,107 @@
+import Link from "next/link";
+import AppLayout from "@/components/layout/AppLayout";
+import { createClient } from "@/lib/supabase/server";
+
+export default async function ProjectsPage() {
+  const supabase = await createClient();
+
+  const { data: projects, error } = await supabase
+    .from("projects")
+    .select(`
+      id,
+      project_code,
+      project_name,
+      status,
+      current_contract_value,
+      start_date,
+      finish_date
+    `)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    return (
+      <AppLayout>
+        <p>Error : {error.message}</p>
+      </AppLayout>
+    );
+  }
+
+  return (
+    <AppLayout>
+      <h1 className="text-3xl font-bold">
+        Projects
+      </h1>
+
+      <div className="mt-8 overflow-hidden rounded-xl border bg-white">
+
+        <table className="w-full">
+
+          <thead className="bg-slate-100">
+
+            <tr>
+
+              <th className="p-3 text-left">
+                Code
+              </th>
+
+              <th className="p-3 text-left">
+                Project
+              </th>
+
+              <th className="p-3 text-left">
+                Status
+              </th>
+
+              <th className="p-3 text-right">
+                Contract
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            {projects?.map((project) => (
+
+              <tr
+                key={project.id}
+                className="border-t"
+              >
+
+                <td className="p-3">
+                  {project.project_code}
+                </td>
+
+
+                <td className="p-3">
+                    <Link
+                        href={`/projects/${project.id}`}
+                        className="font-medium text-blue-600 hover:underline"
+                        >
+                        {project.project_name}
+                    </Link>
+                </td>
+                <td className="p-3">
+                  {project.status}
+                </td>
+
+                <td className="p-3 text-right">
+                  Rp{" "}
+                  {Number(project.current_contract_value).toLocaleString(
+                    "id-ID"
+                  )}
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+    </AppLayout>
+  );
+}
